@@ -162,10 +162,16 @@ while is_running:
         if event.type == pygame.QUIT:
             is_running = False
         if event.type == pygame.WINDOWRESIZED:
+            print(f'WINDOWRESIZED: {event}')
+        if event.type == pygame.VIDEORESIZE:
+            print(f'VIDEORESIZE: {event}')
+        if event.type == pygame.WINDOWSIZECHANGED:
+            print(f'WINDOWSIZECHANGED: {event}')
             handle_resize()
         if event.type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == br_button:
             DEBUG_MODE = not DEBUG_MODE
             manager.set_visual_debug_mode(DEBUG_MODE)
+
         manager.process_events(event)
     background_surface.fill(BACKGROUND_FILL_COLOR)
     manager.update(time_delta)

@@ -19,7 +19,9 @@ class ThreePanelApp(GuiApp):
                  top_height: Union[int, float] = 100,
                  bottom_height: Union[int, float] = 100,
                  heights_as_fractions: bool = False,
-                 margins: Union[list, None] = None):
+                 margins: Union[list, None] = None,
+                 title: str = None
+                ):
         """
         Create an instance of ThreePanelApp.
 
@@ -36,7 +38,7 @@ class ThreePanelApp(GuiApp):
             window's height. If this is False, the heights will be interpreted as pixel values.
         :param margins:
         """
-        super().__init__(*args)
+        super().__init__(*args, title=title)
         if heights_as_fractions and (top_height > 1.0 or bottom_height > 1.0 or top_height + bottom_height > 1.0):
             raise Exception('Panels will not fit. Total is > 100%.')
         if not heights_as_fractions and (top_height + bottom_height > self.root_window_surface.get_height()):
