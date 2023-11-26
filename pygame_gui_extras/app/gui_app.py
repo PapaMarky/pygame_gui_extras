@@ -214,7 +214,11 @@ class GuiApp:
                 self.ui_manager.set_window_resolution(self.size)
             else:
                 self.handle_event(event)
-            self._ui_manager.process_events(event)
+            if self.is_running:
+                self._ui_manager.process_events(event)
+
+        if not self.is_running:
+            return
 
         self._ui_manager.update(time_delta)
         self.update(time_delta)
